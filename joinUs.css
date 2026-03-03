@@ -1,0 +1,6 @@
+/* ═══════ NAVBAR ═══════ */
+#mainNav{background:rgba(10,10,26,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:all .3s;border-bottom:1px solid rgba(255,255,255,.05);padding:.6rem 0}
+#mainNav.scrolled{background:rgba(10,10,26,.97);padding:.4rem 0}
+.navbar-brand span{font-size:1.2rem;letter-spacing:1px}
+.nav-link{font-weight:500;font-size:.9rem;padding:.5rem 1rem!important;border-radius:8px;transition:all .25s}
+.nav-link:hover,.nav-link.active{color:var(--primary)!important;background:rgba(99,102,241,.1)}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | INPT Blockchain Club</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="/CSSFiles/contact.css">
+</head>
+<body class="bg-light">
+
+    <header class="bg-ibc text-white py-5 shadow-sm">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="text-center text-md-start">
+                <h1 class="display-5 fw-bold mb-1">Contactez IBC</h1>
+                <p class="fst-italic opacity-75">INPT Blockchain Club</p>
+            </div>
+            <div class="mt-4 mt-md-0">
+                <a href="https://www.linkedin.com/company/dbc-inpt/" target="_blank" class="btn btn-outline-light rounded-circle me-2 p-3 social-icon">
+                    <i class="fab fa-linkedin fs-4"></i>
+                </a>
+                <a href="https://www.instagram.com/inpt_blockchain_club/" target="_blank" class="btn btn-outline-light rounded-circle p-3 social-icon">
+                    <i class="fab fa-instagram fs-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm p-4 h-100">
+                    <h2 class="h4 fw-bold text-inpt mb-4 border-bottom pb-2">Nos Coordonnées</h2>
+                    
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-4">
+                            <i class="fas fa-map-marked-alt text-primary me-3 mt-1"></i>
+                            <span>Avenue Allal Al Fassi, Madinat Al Irfane, Rabat, Maroc</span>
+                        </li>
+                        <li class="d-flex mb-4">
+                            <i class="fas fa-phone-alt text-primary me-3 mt-1"></i>
+                            <span>+212 538-002700</span>
+                        </li>
+                        <li class="d-flex mb-4">
+                            <i class="fas fa-envelope text-primary me-3 mt-1"></i>
+                            <span>IBC@inpt.ac.ma</span>
+                        </li>
+                        <li class="d-flex">
+                            <i class="fas fa-clock text-primary me-3 mt-1"></i>
+                            <div>
+                                <small class="text-uppercase text-muted fw-bold d-block">Heures d'ouverture</small>
+                                <span>Lundi - Vendredi : 08:30 – 16:30</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg p-4">
+                    <h2 class="h4 fw-bold text-inpt mb-4">Envoyez-nous un message</h2>
+                    
+                    <form id="contactForm">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold text-secondary">Nom complet *</label>
+                                <input type="text" required class="form-control form-control-lg" placeholder="Votre nom">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold text-secondary">E-mail *</label>
+                                <input type="email" required class="form-control form-control-lg" placeholder="votre@email.com">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Sujet *</label>
+                            <input type="text" required class="form-control form-control-lg" placeholder="Ex: Inscriptions, Partenariat...">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">Message *</label>
+                            <textarea required class="form-control" rows="5" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-inpt btn-lg w-100 w-md-auto px-5 py-3 fw-bold shadow">
+                            Envoyer le message
+                        </button>
+                    </form>
+
+                    <div id="successMsg" class="d-none p-5 text-center">
+                        <div class="alert alert-success border-0 bg-success bg-opacity-10 py-4">
+                            <i class="fas fa-check-circle display-4 d-block mb-3 text-success"></i>
+                            <h3 class="h5 fw-bold">Message envoyé avec succès !</h3>
+                            <p class="mb-0">Nous vous répondrons prochainement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h2 class="h3 fw-bold text-inpt mb-4 d-flex align-items-center">
+                <i class="fas fa-map-marker-alt me-2 text-danger"></i> Localisation du Campus
+            </h2>
+            <div id="map" class="shadow rounded-4 border border-4 border-white"></div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white-50 py-4 text-center mt-5">
+        <div class="container">
+            <small>© 2026 Institut National des Postes et Télécommunications (INPT). Tous droits réservés.</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize Map
+        var map = L.map('map').setView([33.9796884, -6.866705], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker = L.marker([33.9796884, -6.866705]).addTo(map);
+        marker.bindPopup("<b>INPT Rabat</b><br>IBC ").openPopup();
+    
+        // Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('d-none');
+            document.getElementById('successMsg').classList.remove('d-none');
+        });
+    </script>
+</body>
+</html>
